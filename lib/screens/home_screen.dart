@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:task_app/utils/app_colors.dart';
-import 'package:task_app/widgets/animiated_number_widget.dart';
 import 'package:task_app/widgets/slider_button.dart';
+
+import '../widgets/animiated_number_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,16 +13,13 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late Animation<double> _sizeAnimation;
-
   bool show = true;
-
-  int _value = 0;
-  int _value2 = 0;
+  int _value = 1034;
+  int _value2 = 2212;
 
   @override
   void initState() {
@@ -31,22 +29,13 @@ class _HomeScreenState extends State<HomeScreen>
       vsync: this,
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeIn,
-      ),
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
     _sizeAnimation = Tween<double>(begin: 0.8, end: 1).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
     _controller.forward();
-
-    _value = 1034;
-    _value2 = 2212;
   }
 
   @override
@@ -55,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen>
     super.dispose();
   }
 
-  Widget _buildAnimatedWidget(Widget child, int delay) {
+  Widget _buildAnimatedWidget(Widget child) {
     return FadeTransition(
       opacity: _animation,
       child: ScaleTransition(
@@ -76,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen>
           gradient: LinearGradient(
             begin: const Alignment(0, -0.5),
             end: Alignment.bottomRight,
-            colors: <Color>[
+            colors: [
               AppColors.backgroundColor2,
               AppColors.backgroundColor,
             ],
@@ -84,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         child: Stack(
           children: [
-            ///Top Area
             Positioned.fill(
               top: 0,
               bottom: MediaQuery.of(context).size.height * 0.45,
@@ -103,21 +91,15 @@ class _HomeScreenState extends State<HomeScreen>
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                             child: Row(
                               children: [
-                                Icon(IconlyBold.location,
-                                    size: 18, color: AppColors.textColor1),
+                                Icon(IconlyBold.location, size: 18, color: AppColors.textColor1),
                                 const SizedBox(width: 5),
-                                Text(
-                                  "Saint Petersburg",
-                                  style: TextStyle(color: AppColors.textColor1),
-                                ),
+                                Text("Saint Petersburg", style: TextStyle(color: AppColors.textColor1)),
                               ],
                             ),
                           ),
-                          1,
                         ),
                         _buildAnimatedWidget(
                           Container(
@@ -131,7 +113,6 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                             ),
                           ),
-                          2,
                         ),
                       ],
                     ),
@@ -139,20 +120,16 @@ class _HomeScreenState extends State<HomeScreen>
                     _buildAnimatedWidget(
                       Text(
                         "Hi, Marina",
-                        style: TextStyle(
-                            color: AppColors.textColor1, fontSize: 24),
+                        style: TextStyle(color: AppColors.textColor1, fontSize: 24),
                       ),
-                      3,
                     ),
-                    // _buildAnimatedWidget(
                     const Text(
                       "let's select your perfect place",
                       style: TextStyle(fontSize: 34, height: 1),
                     ).animate().scaleY(
-                        duration: const Duration(seconds: 2),
-                        curve: Curves.easeInQuad),
-                    //   4,
-                    // ),
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.easeInQuad,
+                    ),
                     const SizedBox(height: 40),
                     AnimatedContainer(
                       width: double.infinity,
@@ -171,13 +148,11 @@ class _HomeScreenState extends State<HomeScreen>
                                 shape: BoxShape.circle,
                               ),
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
                                     "BUY",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
+                                    style: TextStyle(color: Colors.white, fontSize: 16),
                                   ),
                                   Column(
                                     children: [
@@ -190,18 +165,9 @@ class _HomeScreenState extends State<HomeScreen>
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      // Text(
-                                      //   "1 034",
-                                      //   style: TextStyle(
-                                      //     color: Colors.white,
-                                      //     fontSize: 35,
-                                      //     fontWeight: FontWeight.w700,
-                                      //   ),
-                                      // ),
                                       const Text(
                                         "offers",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 14),
+                                        style: TextStyle(color: Colors.white, fontSize: 14),
                                       ),
                                     ],
                                   ),
@@ -209,7 +175,6 @@ class _HomeScreenState extends State<HomeScreen>
                                 ],
                               ),
                             ),
-                            5,
                           ),
                           _buildAnimatedWidget(
                             Container(
@@ -221,14 +186,11 @@ class _HomeScreenState extends State<HomeScreen>
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "RENT",
-                                    style: TextStyle(
-                                        color: AppColors.textColor1,
-                                        fontSize: 16),
+                                    style: TextStyle(color: AppColors.textColor1, fontSize: 16),
                                   ),
                                   Column(
                                     children: [
@@ -241,19 +203,9 @@ class _HomeScreenState extends State<HomeScreen>
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      // Text(
-                                      //   "2 212",
-                                      //   style: TextStyle(
-                                      //     color: AppColors.textColor1,
-                                      //     fontSize: 35,
-                                      //     fontWeight: FontWeight.w700,
-                                      //   ),
-                                      // ),
                                       Text(
                                         "offers",
-                                        style: TextStyle(
-                                            color: AppColors.textColor1,
-                                            fontSize: 14),
+                                        style: TextStyle(color: AppColors.textColor1, fontSize: 14),
                                       ),
                                     ],
                                   ),
@@ -261,7 +213,6 @@ class _HomeScreenState extends State<HomeScreen>
                                 ],
                               ),
                             ),
-                            6,
                           ),
                         ],
                       ),
@@ -270,13 +221,11 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
             ),
-
             DraggableScrollableSheet(
               initialChildSize: 0.45,
               minChildSize: 0.45,
               maxChildSize: 0.7,
-              builder:
-                  (BuildContext context, ScrollController scrollController) {
+              builder: (BuildContext context, ScrollController scrollController) {
                 return Container(
                   decoration: const BoxDecoration(
                     color: Colors.white,
@@ -292,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen>
                       children: [
                         _buildAnimatedWidget(
                           Container(
-                            width: size.width * 0.95,
+                            width: size                            .width * 0.95,
                             height: 180,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -312,7 +261,6 @@ class _HomeScreenState extends State<HomeScreen>
                               width: size.width * 0.95 - 60,
                             ),
                           ),
-                          7,
                         ),
                         const SizedBox(height: 10),
                         Row(
@@ -325,8 +273,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/home2.jpeg"),
+                                    image: AssetImage("assets/images/home2.jpeg"),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -341,7 +288,6 @@ class _HomeScreenState extends State<HomeScreen>
                                   width: size.width * 0.46 - 60,
                                 ),
                               ),
-                              8,
                             ),
                             Column(
                               children: [
@@ -352,8 +298,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       image: const DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/home3.jpg"),
+                                        image: AssetImage("assets/images/home3.jpg"),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -368,7 +313,6 @@ class _HomeScreenState extends State<HomeScreen>
                                       width: size.width * 0.46 - 60,
                                     ),
                                   ),
-                                  9,
                                 ),
                                 const SizedBox(height: 10),
                                 _buildAnimatedWidget(
@@ -378,9 +322,9 @@ class _HomeScreenState extends State<HomeScreen>
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       image: const DecorationImage(
-                                          image: AssetImage(
-                                              "assets/images/home3.jpg"),
-                                          fit: BoxFit.cover),
+                                        image: AssetImage("assets/images/home3.jpg"),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                     alignment: Alignment.bottomLeft,
                                     padding: EdgeInsets.only(
@@ -393,7 +337,6 @@ class _HomeScreenState extends State<HomeScreen>
                                       width: size.width * 0.46 - 60,
                                     ),
                                   ),
-                                  10,
                                 ),
                               ],
                             ),
@@ -412,3 +355,4 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 }
+
